@@ -1,0 +1,38 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<h1>יצירת שירות חדש</h1>
+				<form class="admin-text" method="post" action="/services" enctype="multipart/form-data">
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"/>
+					<div>
+						<label for="title">שם השירות:</label>
+						<input type="text" class="textbox" name="title" value="<?php echo e(old('title')); ?>" />
+					</div>
+					<div>
+						<label for="desc">תיאור השירות:</label>
+						<textarea class="ckeditor" name="desc"><?php echo e(old('desc')); ?></textarea>
+					</div>
+					<div id="pics">
+						<label>תמונות:</label>
+						<input type="file" name="pic1" />
+					</div>
+					<span class="add-img" onclick="addpic()">הוספת תמונה</span>
+					<div>
+						<input type="checkbox" name="important" style="display: inline-block !important"/>
+						<label>האם השירות חשוב?</label>
+					</div>
+					<input type="submit" value="שלח"/>
+				</form>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="<?php echo e(asset('js/smoothscroll.js')); ?>"></script>
+	<script src="<?php echo e(asset('js/picsScript.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

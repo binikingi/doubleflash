@@ -1,0 +1,36 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content" class="admin admin-text">
+				<h1>עריכת אירוע - <?php echo e($event->title); ?></h1>
+				<form method="post" action="/event/<?php echo e($event->id); ?>">
+					<input type="hidden" name="_method" value="PUT"/>
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"/>
+
+					<input type="text" class="textbox" placeholder="שם אירוע" name="title" value="<?php echo e($event->title); ?>"/>
+					<textarea name="desc" class="ckeditor" placeholder="תיאור האירוע"><?php echo e($event->desc); ?></textarea>
+
+					<label>שירותים שקשורים לאירוע:</label><br>
+					<?php foreach(App\service::all() as $service): ?>
+						<input type="checkbox" id="service-<?php echo e($service->id); ?>" value="<?php echo e($service->id); ?>" name="service[]" style="display:inline-block" <?php if(in_array($service->id, $services)): ?> <?php echo e('checked'); ?> <?php endif; ?>/>
+						<label for="service-<?php echo e($service->id); ?>"><?php echo e($service->title); ?></label>
+					<?php endforeach; ?>
+				</form>
+					<input type="submit" value="שלח"/>
+				<form method="post" action="/event/<?php echo e($event->id); ?>">
+					<input type="hidden" name="_method" value="DELETE"/>
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"/>
+					<input type="submit" value="מחק!"/>
+				</form>
+			</div>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="<?php echo e(asset('js/smoothscroll.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

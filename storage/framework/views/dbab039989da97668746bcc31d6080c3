@@ -1,0 +1,89 @@
+
+
+<?php $__env->startSection('content'); ?>
+		<!-- content -->
+			<div id="content">
+			<!-- top div -->
+				<div class="content">
+					<span class="header header-big"><span class="header-candarai">Double</span><span class="header-candaraz">Flash</span></span>
+					<p class="content-p">
+						<span class="content-p-header">הפקות ואטרקציות לאירועים</span>
+						<?php echo $content; ?>
+
+						<?php if(check()): ?>
+							<br><a href="/edit" class="edit-home">ערוך דף בית</a>
+						<?php endif; ?>
+					</p>
+					<a href="contact" class="contact-span contant-span-black">צור קשר עכשיו וקבל הצעת מחיר משתלמת במיוחד</a>
+				</div>
+			<!-- event div -->
+				<div class="content" id="event">
+					<div>
+						<span class="event-bg event-bg-top"></span>
+
+						<span class="header">בחר אירוע</span>
+						<span>
+							<?php if(check()): ?>
+								<a href="/event/create">הוספת אירוע</a>
+							<?php endif; ?>
+						</span>
+						<span class="event-text">היעזר במחולל האירועים שלנו ובלחיצת כפתור האירוע שלך יהיה מושלם</span>
+						<ul class="list-inline list-unstyled">
+							<?php foreach($events as $event): ?>
+								<li class="event">
+									<div class="event-top">
+										<span class="event-header"><?php echo e($event->title); ?></span>
+										<span class="event-click">לחץ לבחירה</span>
+									</div>
+									<div class="event-bottom">
+										<p class="event-p">
+											<?php echo e($event->desc); ?>
+
+										</p>
+										<?php if(check()): ?>
+											<a href="event/<?php echo e($event->id); ?>/edit" class="edit-event">עריכת אירוע זה</a>
+										<?php endif; ?>
+										<a href="contact/<?php echo e($event->id); ?>" class="event-chose">הזמן עכשיו</a>
+									</div>
+							<?php endforeach; ?>
+						</ul>
+
+						<span class="event-bg event-bg-bottom"></span>
+					</div>
+				</div>
+			<!-- services -->
+				<div class="content" id="service">
+					<span class="service-bg-top"></span>
+					<span class="event-bg service-bg-bottom"></span>
+					<span class="header">שירותים</span>
+					<?php if(check()): ?>
+						<a href="services/create">הוספת שירות</a>
+					<?php endif; ?>
+					<ul class="service-ul list-inline list-unstyled">
+						<?php foreach($services as $service): ?>
+							<li class="service-li col-sm-6 col-xs-12">
+								<a href="services/<?php echo e($service->id); ?>" class="service-a">
+									<span class="service-a-name"><?php echo e($service->title); ?></span>
+									<div class="service-a-image-div">
+										<img src="<?php echo e($service->pic); ?>" alt="service image" class="service-a-image">
+									</div>
+								</a>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+		<!-- contact -->
+			<div class="content" id="contact-small">
+			<a href="contact" class="contact-span contant-span-white">צור קשר עכשיו וקבל הצעת מחיר משתלמת במיוחד</a>
+			</div>
+			</div>
+
+			<div id="footer">
+		 		<a href="Facebook" class="facebook" target="blank"><img src="images/icons/facebook.jpg" alt="facebook"></a>
+		 		<span class="bottom-text">כל הזכויות שמורות <span class="red">|</span> <a href="http://codedesign.co.il" target="blank">CODEDESIGN.CO.IL - בניית אתרים במחירים נוחים</a></span>
+		 	</div>
+		</div>
+
+	<script src="js/smoothscroll.js"></script>
+	<script src="js/script.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

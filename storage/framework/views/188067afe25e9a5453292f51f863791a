@@ -1,0 +1,17 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content" class="admin">
+				<h2>עריכת דף הבית</h2>
+				<form method="post" action="/edit">
+					<?php echo e(csrf_field()); ?>
+
+					<div class="textarea">
+						<textarea name="content" class="ckeditor" placeholder="תוכן..."><?php echo e($text); ?></textarea>
+					</div>
+					<input type="submit" value="שלח">
+				</form>
+			</div>
+		</div>
+	<script src="<?php echo e(asset('js/smoothscroll.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

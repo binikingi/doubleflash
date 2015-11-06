@@ -1,0 +1,32 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<h1>עריכת שורה בהסכם שירות</h1>
+				<form method="post" action="/agreement/<?php echo e($line->id); ?>">
+					<?php echo e(csrf_field()); ?>
+
+					<input type="hidden" name="_method" value="PUT" />
+					<div class="admin-text">
+						<label for="line">תוכן:</label>
+						<textarea class="ckeditor" name="line"><?php echo e($line->line); ?></textarea>
+					</div>
+					<input type="submit" value="עדכן"/>
+				</form>
+				<form method="post" action="/agreement/<?php echo e($line->id); ?>">
+					<?php echo e(csrf_field()); ?>
+
+					<input type="hidden" name="_method" value="DELETE"/>
+					<input type="submit" value="מחק!"/>
+				</form>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="<?php echo e(asset('js/smoothscroll.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

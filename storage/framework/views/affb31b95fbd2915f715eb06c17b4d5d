@@ -1,0 +1,22 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<form method="post" action="/login">
+					<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"
+					<div>
+						<label for="password">סיסמה:</label>
+						<input type="password" name="password" id="password" required/>
+					</div>
+					<div>
+						<input type="submit" value="הכנס"/>
+					</div>
+				</form>
+				<div>
+					<?php if(isset($err)): ?>
+						<?php echo e($err); ?>
+
+					<?php endif; ?>
+				</div>
+			<script src="../js/smoothscroll.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

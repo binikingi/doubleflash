@@ -1,0 +1,177 @@
+#menu {
+    display: inline-block !important;
+    margin-top: 10px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+#nav-bar {
+    width: 100%;
+    position: absolute;
+    top: 75px;
+    z-index: 2;
+}
+
+#nav ul .nav-link {
+    display: BLOCK;
+    text-align: center;
+}
+
+span.nav-link-a {
+    width: 100%;
+    padding: 22px 20px;
+}
+
+#nav {
+    position: absolute;
+}
+
+.nav-link-ul {
+    position: relative;
+    top: 0 !important;
+    width: 90%;
+    margin: 0 auto !important;
+    margin-top: 25px !important;
+    opacity: 1;
+    display: none !important;
+}
+
+span.nav-link-a:hover .nav-link-ul {
+    display: block !important;
+}
+
+#nav-bar {
+    display: none !important;
+    /* display: none; */
+}
+
+.text.contact {
+    display: block;
+    width: 100%;
+}
+
+.contact-v.event-v {
+    font-size: 16px;
+}
+
+.agreement-line {
+    width: 100%;
+}
+
+.content {
+    padding: 15px;
+}
+
+#agreement {
+    width: 100%;
+}
+
+.text.agreement {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.event-bg {
+    border-top: 30px solid;
+}
+
+.event-bg-bottom {
+    bottom: -50px;
+}
+
+.service-a {
+    margin: 5px 0;
+}
+
+.service-ul {
+    width: 100%;
+}
+
+.event-text {
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#event {
+    padding: 100px 0px 40px 0px;
+}
+
+.event-header {
+    font-size: 30px;
+    line-height: 290px;
+}
+
+.event {
+    padding: 5px;
+    height: 300px;
+    margin: 25px auto !important;
+}
+
+.event-p {
+    font-size: 16px;
+    padding: 10px;
+}
+
+.event-chose {
+    font-size: 18px;
+    padding: 20px;
+    bottom: -65px;
+}
+
+.event-click {
+    font-size: 16px;
+    bottom: 15px;
+}
+
+.contact-span {
+    padding: 20px 10px;
+    font-size: 20px;
+}
+
+.content-p {
+    padding: 5px;
+    font-size: 20px;
+}
+
+.header-big {
+    font-size: 50px !important;
+    margin: 50px 0;
+}
+
+#event ul.list-inline.list-unstyled {
+    margin: 0;
+}
+
+#nav-bar.show {
+    
+display: inline-block !important;
+}
+
+#gellery {
+    height: 350px;
+}
+
+.galley-dotted {
+    height: 20px;
+    width: 20px;
+}
+
+.gallery-text {
+    font-size: 22px;
+}
+
+#nav.fade #nav-bar {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.contact-v.service-v {
+    display: block;
+    margin: auto;
+    width: auto;
+    padding-right: 70px;
+}
+
+.button-box {
+    width: 90%;
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="../../js/jq.js"></script>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+		<link rel="stylesheet" href="../../css/style.css">
+
+		<title>Web</title>
+	</head>
+	<body dir="rtl">
+		<div id="wrap">
+
+		<!-- nav bar -->
+			<div id="nav" class="<?php if(isset($wrapClass)): ?> <?php echo e($wrapClass); ?> <?php endif; ?>">
+			<!-- right nav -->
+				<ul class="list-inline list-unstyled">
+					<li class="nav-link">
+						<a href="/" class="nav-link-a">דף הבית</a>
+					<li class="nav-link">
+						<span class="nav-link-a">שירותים <span class="caret"></span></a>
+						<!-- srvices -->
+						<ul class="nav-link-ul list-inline list-unstyled">
+							<?php foreach(App\service::all() as $service): ?>
+								<li class="nav-link-ul-li">
+									<a href="/services/<?php echo e($service->id); ?>" class="nav-link-ul-a <?php echo e($service->important=='true'?'important':''); ?>"><?php echo e($service->title); ?></a>
+							<?php endforeach; ?>
+						</ul>
+					<li class="nav-link">
+						<a href="/agreement" class="nav-link-a">הסכם שירות</a>
+					<?php if(isset($_SESSION['Admin']) && $_SESSION['Admin'] == $_SERVER['REMOTE_ADDR'].'passwordHash'): ?>
+						<li class="nav-link">
+							<a href="#" class="nav-link-a">שלום, מנהל</a>
+					<?php endif; ?>
+					<li class="nav-link left important">
+						<a href="/contact" class="nav-link-a">צור קשר</a>
+				</ul>
+			</div>
+
+		<?php echo $__env->yieldContent('content'); ?>
+	</body>
+</html>

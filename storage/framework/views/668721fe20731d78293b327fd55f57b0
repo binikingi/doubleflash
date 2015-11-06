@@ -1,0 +1,33 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<h1>הוספת תרומה לקהילה</h1>
+				<form method="post" action="/help" enctype="multipart/form-data">
+					<?php echo e(csrf_field()); ?>
+
+					<div>
+						<label for="title">תמונה להמחשה</label>
+						<input type="file" name="img">
+					</div>
+					<div>
+						<label for="content">תוכן:</label>
+						<textarea name="content"><?php echo e(old('content')); ?></textarea>
+					</div>
+					<div>
+						<label for="link">קישור:</label>
+						<input type="text" name="link" value="<?php echo e(old('link')); ?>"></textarea>
+					</div>
+					<input type="submit" value="שלח"/>
+				</form>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="<?php echo e(asset('js/smoothscroll.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

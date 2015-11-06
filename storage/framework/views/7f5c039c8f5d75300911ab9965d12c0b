@@ -1,0 +1,38 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<h1>עריכת תרומה</h1>
+				<form method="post" action="/help/<?php echo e($help->id); ?>" enctype="multipart/form-data">
+					<?php echo e(csrf_field()); ?>
+
+					<input type="hidden" name="_method" value="PUT">
+					<input type="hidden" name="img" value="<?php echo e($help->img); ?>">
+					<img src="<?php echo e(asset($help->img)); ?>"/>
+					<div>
+						<label for="desc">תוכן:</label>
+						<textarea name="content"><?php echo e($help->content); ?></textarea>
+					</div>
+					<div>
+						<label for="link">קישור:</label>
+						<input type="text" name="link" value="<?php echo e($help->link); ?>"></textarea>
+					</div>
+					<input type="submit" value="שלח">
+				</form>
+				<form method="post" action="/help/<?php echo e($help->id); ?>">
+					<?php echo e(csrf_field()); ?>
+
+					<input type="hidden" name="_method" value="DELETE">
+					<input type="submit" value="מחק!">
+				</form>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="<?php echo e(asset('js/smoothscroll.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

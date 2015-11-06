@@ -1,0 +1,35 @@
+
+
+<?php $__env->startSection('content'); ?>
+		<!-- content -->
+			<div id="content">
+				<div id="gallery-page">
+					<div id="gellery">
+						<div id="gallery-inside"><!--
+							<?php foreach($servicePics as $pic): ?>
+								--><img src="../<?php echo e($pic->pic); ?>" alt="בלונים" class="galley"><!--
+							<?php endforeach; ?>
+						-->
+						</div>
+					</div>
+					<div id="galley-text">
+						<span class="header gallery-header"><?php echo e($service->title); ?></span>
+						<p class="gallery-text">
+							<?php echo e($service->desc); ?>
+
+						</p>
+						<?php if(check()): ?>
+							<a href="/services/<?php echo e($service->id); ?>/edit" class="edit-service">עריכת שירות זה</a>
+						<?php endif; ?>
+					</div>
+					<a href="/contact/<?php echo e($service->id); ?>" class="gallery-choose">בחר שירות זה</a>
+					<ul id="galley-dotted" class="list-unstyled list-inline">
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	<script src="../js/smoothscroll.js"></script>
+	<script src="../js/gallery.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

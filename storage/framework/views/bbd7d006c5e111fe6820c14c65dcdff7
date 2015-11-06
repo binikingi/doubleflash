@@ -1,0 +1,126 @@
+
+
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content" class="contact-page">
+				<div class="content contact-page">
+
+					<div class="col-md-3" id="contact-left">
+
+						<div id="contact-help">
+							<h1 class="header contact">תרומה לקהילה</h1>
+							<div id="help-slider">
+								<div id="help-slider-inside">
+								<!--
+								<?php foreach($helps as $help): ?>
+									--><div class="help-row">
+										<img src="<?php echo e($help->img); ?>" alt="logo" class="help-row-img">
+										<p class="help-row-text">
+											<?php echo e($help->content); ?>
+
+											<?php if(check()): ?>
+												<a href="help/<?php echo e($help->id); ?>/edit">עריכה</a>
+											<?php endif; ?>
+										</p>
+										<span class="row-help-button" id="row-help-<?php echo e($help->id); ?>">תעודת הוקרה</span>
+									</div><!--
+								<?php endforeach; ?>
+								-->
+								</div>
+							</div>
+							<img src="images/icons/arrow-right.png" class="arrow" id="help-next" alt="arrow">
+							<img src="images/icons/arrow-left.png" class="arrow" id="help-prev" alt="arrow">
+						</div>
+
+
+							<script src="https://maps.googleapis.com/maps/api/js"></script>
+							    <script>
+							      function initialize() {
+							        var mapCanvas = document.getElementById('map');
+							        var mapOptions = {
+							          center: new google.maps.LatLng(44.5403, -78.5463),
+							          zoom: 8,
+							          mapTypeId: google.maps.MapTypeId.ROADMAP
+							        }
+							        var map = new google.maps.Map(mapCanvas, mapOptions)
+							      }
+							      google.maps.event.addDomListener(window, 'load', initialize);
+							    </script>
+						<div id="map">
+						</div>
+					</div>
+
+					
+					<span class="col-md-1"></span>
+
+					<form id="contact" class="col-md-8" method="post" action="/contact">
+						<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+						<h1 class="header contact">צור קשר</h1>
+						<span class="header small-contact red">שלמה 050-1234567</span>
+
+						<div class="contact-div" id="contact-text">
+							<input type="text" class="text contact" name="fname" placeholder="שם פרטי" required><!-- 
+					 	 --><input type="text" class="text contact" name="lname" placeholder="שם משפחה" required><!--
+						 --><input type="text" class="text contact" name="phone" placeholder="טלפון" required><!--
+						 --><select class="text contact center" name="payment" required>
+								<option value="">בחר נושא</option>
+								<option value="price">הצעת מחיר</option>
+								<option value="meet">פגישה</option>
+							</select>
+							<textarea class="text contact" name="content" placeholder="תוכן" required></textarea>
+						</div>
+
+						<div class="contact-div" id="contact-event">
+							<span class="contact-header">בחר אירוע:</span>
+
+							<!--
+							<?php foreach($events as $event): ?>
+								--><div class="button-box">
+									<input type="radio" name="event" id="event-<?php echo e($event->id); ?>" value="<?php echo e($event->title); ?>" <?php echo e(isset($currEvent)&&$currEvent->id==$event->id?'checked':''); ?>>
+									<label for="event-<?php echo e($event->id); ?>" class="contact-v event-v"><?php echo e($event->title); ?></label> 
+								</div><!--
+							<?php endforeach; ?>
+						-->
+							<input type="text" class="text big contact" name="address" placeholder="מקום אירוע" required><!-- 
+						 --><input type="text" class="text small contact center" name="invites" placeholder="מספר מוזמנים" required>
+						</div>
+
+						<div class="contact-div" id="contact-service">
+							<span class="contact-header">בחר שירות:</span>
+							<!--
+							<?php foreach($services as $service): ?>
+								--><input type="checkbox" name="service[]" id="service-<?php echo e($service->id); ?>" value="<?php echo e($service->title); ?>" <?php echo e(isset($checkService)&&in_array($service->id, $checkService)?'checked':''); ?>>
+								<label for="service-<?php echo e($service->id); ?>" class="contact-v service-v"><?php echo e($service->title); ?></label><!-- 
+							<?php endforeach; ?>
+						-->
+						</div>
+
+						<div class="contact-div" id="contact-time">
+							<span class="contact-header">מתי תרצה שנחזור אליך?</span>
+							<input type="radio" name="time" id="time-1" value="עכשיו" checked="checked">
+							<label for="time-1" class="contact-v time-v">עכשיו</label><!-- 
+						 --><input type="radio" name="time" id="time-2" value="במהלך היום">
+							<label for="time-2" class="contact-v time-v">בהמלך היום</label><!-- 
+						 --><input type="radio" name="time" id="time-3" value="עד 21:00 הערב">
+							<label for="time-3" class="contact-v time-v">עד 21:00 הערב</label><!-- 
+						 --><input type="radio" name="time" id="time-4" value="מחר בבוקר">
+							<label for="time-4" class="contact-v time-v">מחר בבוקר</label>
+						</div>
+
+						<input type="submit" class="text contact center submit" name="id" value="שלח">
+						<?php if($errors->any()): ?>
+							<ul>
+								<?php foreach($errors->all() as $err): ?>
+									<li><?php echo e($err); ?></li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	<script src="js/smoothscroll.js"></script>
+	<script src="js/script.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,49 @@
+
+
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<h1>עריכת שירות - <?php echo e($service->title); ?></h1>
+				<form method="post" action="/services/<?php echo e($service->id); ?>">
+					<input type="hidden" name="_method" value="PUT"/>
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+					<input type="hidden" name="pic1" value="<?php echo e($service->pic); ?>"/>
+					<div>
+						<label for="title">שם השירות:</label>
+						<input type="text" name="title" value="<?php echo e($service->title); ?>"/>
+					</div>
+					<div>
+						<label for="desc">תיאור השירות:</label>
+						<textarea name="desc"><?php echo e($service->desc); ?></textarea>
+					</div>
+					<div id="pics">
+						<label>תמונות:</label>
+						<?php foreach($servicePic as $s): ?>
+							<img src="../../<?php echo e($s->pic); ?>" width="250" height="150" />
+						<?php endforeach; ?>
+					</div>
+					<span onclick="addpic()">add pic</span>
+					<div>
+						<label>האם השירות חשוב?</label>
+						<input type="checkbox" name="important" style="display: inline-block !important" <?php if($service->important == 'true'): ?> <?php echo e('checked'); ?> <?php endif; ?>/>
+					</div>
+					<input type="submit" value="שמור"/>
+				</form>
+				<form method="post" action="/services/<?php echo e($service->id); ?>">
+					<input type="hidden" name="_method" value="DELETE" />
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+					<input type="submit" value="מחק!" />
+				</form>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="../js/smoothscroll.js"></script>
+	<script src="../js/picsScript.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

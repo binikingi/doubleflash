@@ -1,0 +1,30 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<h1>הוספת שורה לחוזה</h1>
+				<form method="post" action="/agreement/<?php echo e($line->id); ?>">
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"/>
+					<input type="hidden" name="_method" value="PUT" />
+					<div>
+						<label for="line">תוכן:</label>
+						<textarea name="line"><?php echo e($line->line); ?></textarea>
+					</div>
+					<input type="submit" value="עדכן"/>
+				</form>
+				<form method="post" action="/agreement/<?php echo e($line->id); ?>">
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"/>
+					<input type="hidden" name="_method" value="DELETE"/>
+					<input type="submit" value="מחק!"/>
+				</form>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="../js/smoothscroll.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

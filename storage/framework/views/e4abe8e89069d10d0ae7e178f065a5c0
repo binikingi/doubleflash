@@ -1,0 +1,37 @@
+
+
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<h1>הוספת אירוע</h1>
+				<form method="post" action="/event">
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"/>
+					<div>
+						<label for="title">שם אירוע:</label>
+						<input type="text" name="title" />
+					</div>
+					<div>
+						<label for="desc">תיאור האירוע</label>
+						<textarea name="desc"></textarea>
+					</div>
+					<div>
+						<label>שירותים שקשורים לאירוע:</label><br>
+						<?php foreach(App\service::all() as $service): ?>
+							<input type="checkbox" id="service-<?php echo e($service->id); ?>" value="<?php echo e($service->id); ?>" name="service[]" style="display:inline-block"/>
+							<label for="service-<?php echo e($service->id); ?>"><?php echo e($service->title); ?></label>
+						<?php endforeach; ?>
+					</div>
+					<input type="submit" value="שלח"/>
+				</form>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="../js/smoothscroll.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
