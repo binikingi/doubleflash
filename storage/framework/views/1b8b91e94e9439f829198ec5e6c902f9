@@ -1,0 +1,39 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<div class="content">
+					<span class="header agreement">הסכם שירות</span>
+					<?php if(check()): ?>
+						<a class="edit" href="agreement/create">הוספת שורה לחוזה</a>
+					<?php endif; ?>
+					<ul class="list-unstyled">
+						<?php foreach($agreements as $agreement): ?>
+							<li class="agreement-line">
+								<?php echo $agreement->line; ?>
+
+								<?php if(check()): ?>
+									<br><a class="edit" href="agreement/<?php echo e($agreement->id); ?>/edit">עריכת שורה</a>
+								<?php endif; ?>
+						<?php endforeach; ?>
+					</ul>
+					<form id="agreement" method="post">
+						<input type="text" class="text agreement" name="name" placeholder="שם מלא"><!-- 
+					 --><input type="text" class="text agreement center" name="id" placeholder="מספר פנייה">
+						<input type="checkbox" id="agree">
+						<label for="agree" class="agree-v agreement-line agreement-v-bg">בעת סימון תיבה זו את/ה מצהיר/ה כי מוסכמים עליך התנאים הנ"ל.</label>
+						<select class="text agreement center" name="payment">
+							<option value="">בחר אמצעי תשלום</option>
+							<option value="transfer">העברה בנקאית</option>
+							<option value="check">צ'ק</option>
+							<option value="credit">אשראי</option>
+							<option value="cash">מזומן</option>
+						</select><!-- 
+					 --><input type="submit" class="text agreement center submit" name="id" value="שלח">
+						</form>
+				</div>
+			</div>
+		</div>
+
+	<script src="<?php echo e(asset('js/smoothscroll.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
