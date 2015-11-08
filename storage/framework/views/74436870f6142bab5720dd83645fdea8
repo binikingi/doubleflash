@@ -1,0 +1,55 @@
+<?php $__env->startSection('content'); ?>
+	<!-- content -->
+			<div id="content">
+				<h1>עריכת שירות - <?php echo e($service->title); ?></h1>
+				<form class="admin-text" method="post" action="/services/<?php echo e($service->id); ?>" enctype="multipart/form-data">
+					<input type="hidden" name="_method" value="PUT"/>
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+					<input type="hidden" name="pic1" value="ss"/>
+					<div>
+						<label for="title">שם השירות:</label>
+						<input type="text" class="textbox" name="title" value="<?php echo e($service->title); ?>"/>
+					</div>
+					<div>
+						<label for="desc">תיאור השירות:</label>
+						<textarea class="ckeditor" name="desc"><?php echo e($service->desc); ?></textarea>
+					</div>
+					<div>
+						<label>תמונות:</label>
+						<?php foreach($servicePic as $s): ?>
+							<div class="pic-div" style="background-image:url('<?php echo e(asset($s->pic)); ?>'); width:250px; height:150px; display:inline-block; background-size:100%;">
+								<span class="x-pic" onclick="deletePic('<?php echo e($s->id); ?>', <?php echo e($service->id); ?>)">X</span>
+							</div>
+						<?php endforeach; ?>
+					</div>
+					<div id="pics">
+							<label>הוספת תמונות:</label>
+							<input type="file" name="pic1" />
+					</div>
+					<div>
+						<span class="add-img" onclick="addpic()">הוספת תמונה</span>
+					</div>
+					<div>
+						<label>האם השירות חשוב?</label>
+						<input type="checkbox" name="important" style="display: inline-block !important" <?php if($service->important == 'true'): ?> <?php echo e('checked'); ?> <?php endif; ?>/>
+					</div>
+					<input type="submit" value="שמור"/>
+				</form>
+				<form method="post" action="/services/<?php echo e($service->id); ?>">
+					<input type="hidden" name="_method" value="DELETE" />
+					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+					<input type="submit" value="מחק!" />
+				</form>
+			</div>
+		</div>
+		<?php if($errors->Any()): ?>
+			<ul>
+				<?php foreach($errors->all() as $err): ?>
+					<li><?php echo e($err); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<script src="<?php echo e(asset('js/smoothscroll.js')); ?>"></script>
+	<script src="<?php echo e(asset('js/picsScript.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

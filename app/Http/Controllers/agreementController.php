@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\info;
 use App\agreement;
 use App\Http\Requests\agreementRequest;
 
@@ -22,8 +23,9 @@ class agreementController extends Controller
 
     public function index()
     {
+        $info = info::where('name', 'agreement')->limit(1)->get()[0];
         $agreements = agreement::all();
-        return view('agreement.index', compact('agreements'));
+        return view('agreement.index', compact('agreements', 'info'));
     }
 
     /**

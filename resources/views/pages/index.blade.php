@@ -7,6 +7,9 @@
 				<div class="content">
 					<span class="header header-big"><span class="header-candarai">Double</span><span class="header-candaraz">Flash</span></span>
 					<div class="content-p">
+						@if(check())
+							<a href="/editInfo/index" class="edit">עריכת פרטי דף</a>
+							@endif
 						<span class="content-p-header">הפקות ואטרקציות לאירועים</span>
 						<div class="text-index">
 							{!! $content !!}
@@ -65,7 +68,10 @@
 								<a href="services/{{$service->id}}" class="service-a">
 									<span class="service-a-name">{{$service->title}}</span>
 									<div class="service-a-image-div">
-										<img src="{{asset($service->pic)}}" alt="service image" class="service-a-image">
+										@foreach(App\servicePic::where('service_id', $service->id)->limit(1)->get() as $pic)
+												<img src="{{$pic->pic}}" alt="service image" class="service-a-image">
+										@endforeach
+										
 									</div>
 								</a>
 						@endforeach

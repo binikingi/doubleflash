@@ -15,6 +15,9 @@
 					<ul id="galley-dotted" class="list-unstyled list-inline"></ul>
 					<div id="galley-text">
 						<span class="header gallery-header">{{$service->title}}</span>
+						@if(check())
+							<a href="/editInfo/services" class="edit">עריכת פרטי דף</a>
+						@endif
 						<div class="gallery-text">
 							{!!$service->desc!!}
 						</div>

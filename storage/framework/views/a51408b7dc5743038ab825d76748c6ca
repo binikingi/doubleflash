@@ -5,6 +5,9 @@
 				<div class="content">
 					<span class="header header-big"><span class="header-candarai">Double</span><span class="header-candaraz">Flash</span></span>
 					<div class="content-p">
+						<?php if(check()): ?>
+							<a href="/editInfo/index" class="edit">עריכת פרטי דף</a>
+							<?php endif; ?>
 						<span class="content-p-header">הפקות ואטרקציות לאירועים</span>
 						<div class="text-index">
 							<?php echo $content; ?>
@@ -65,7 +68,10 @@
 								<a href="services/<?php echo e($service->id); ?>" class="service-a">
 									<span class="service-a-name"><?php echo e($service->title); ?></span>
 									<div class="service-a-image-div">
-										<img src="<?php echo e(asset($service->pic)); ?>" alt="service image" class="service-a-image">
+										<?php foreach(App\servicePic::where('service_id', $service->id)->limit(1)->get() as $pic): ?>
+												<img src="<?php echo e($pic->pic); ?>" alt="service image" class="service-a-image">
+										<?php endforeach; ?>
+										
 									</div>
 								</a>
 						<?php endforeach; ?>

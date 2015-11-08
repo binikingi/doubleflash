@@ -16,7 +16,7 @@ class adminMiddleware
     public function handle($request, Closure $next)
     {
         if(isset($_SESSION['Admin'])){
-            if($_SESSION['Admin'] == $_SERVER['REMOTE_ADDR'].'passwordHash'.$_ENV['ADMIN_PASSWORD']){
+            if($_SESSION['Admin'] == $_SERVER['REMOTE_ADDR'].'passwordHash'.password()){
                 return $next($request);
             }
             else{

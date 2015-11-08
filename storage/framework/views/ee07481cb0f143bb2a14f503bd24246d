@@ -1,0 +1,20 @@
+<?php $__env->startSection('content'); ?>
+	<div id="content">
+		<h1>עריכה של דף - <?php echo e($info->name); ?></h1>
+		<form class="admin-text" method="post" action="/editInfo">
+			<?php echo e(csrf_field()); ?>
+
+			<input type="hidden" name="name" value="<?php echo e($info->name); ?>">
+			<div>
+				<label for="title">כותרת לדף:</label>
+				<input type="text" class="textbox" name="title" value="<?php echo e($info->title); ?>"/>
+			</div>
+			<div>
+				<label for="description">תיאור הדף:</label>
+				<textarea name="description"><?php echo e($info->description); ?></textarea>
+			</div>
+			<input type="submit" value="עדכן">
+		</form>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

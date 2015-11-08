@@ -20,7 +20,13 @@
 		<link rel="stylesheet" href="{{ asset('css/pad.css') }}" media="screen and (max-width: 830px)">
 		<link rel="stylesheet" href="{{ asset('css/mobile.css') }}" media="screen and (max-width: 600px)">
 
-		<title>DoubleFlash</title>
+		@if(isset($info))
+			<meta name="description" content="{{ $info->description }}">
+		@else
+			<meta name="description" content="DoubleFlash - הפקות אירועים ומגנטים">
+		@endif
+
+		<title>DoubleFlash @if(isset($info)) {!! '- ' . $info->title !!} @endif</title>
 		<script>
 			$.ajaxSetup({
 			   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
@@ -54,7 +60,9 @@
 						<a href="/agreement" class="nav-link-a">הסכם שירות</a>
 					@if(check())
 						<li class="nav-link">
-							<a href="logout" class="nav-link-a">התנתק</a>
+							<a href="/logout" class="nav-link-a">התנתק</a>
+						<li class="nav-link">
+							<a href="/changePassword" class="nav-link-a">שינוי סיסמה</a>
 					@endif
 				</ul>
 				<span class="nav-link left important">

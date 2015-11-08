@@ -7,6 +7,7 @@
 					<span class="header agreement">הסכם שירות</span>
 					@if(check())
 						<a class="edit" href="agreement/create">הוספת שורה לחוזה</a>
+						<a href="/editInfo/agreement" class="edit">עריכת פרטי דף</a>
 					@endif
 					<ul class="list-unstyled">
 						@foreach($agreements as $agreement)

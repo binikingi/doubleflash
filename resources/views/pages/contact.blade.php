@@ -7,6 +7,9 @@
 				<form id="contact" method="post" action="/contact">
 						<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 						<h1 class="header contact">צור קשר</h1>
+						@if(check())
+							<a href="/editInfo/contact" class="edit">עריכת פרטי דף</a>
+						@endif
 						<span class="header small-contact red">שלמה 050-8566127</span>
 
 						<div class="contact-div" id="contact-text">

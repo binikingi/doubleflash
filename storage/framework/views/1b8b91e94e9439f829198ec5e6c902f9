@@ -5,6 +5,7 @@
 					<span class="header agreement">הסכם שירות</span>
 					<?php if(check()): ?>
 						<a class="edit" href="agreement/create">הוספת שורה לחוזה</a>
+						<a href="/editInfo/agreement" class="edit">עריכת פרטי דף</a>
 					<?php endif; ?>
 					<ul class="list-unstyled">
 						<?php foreach($agreements as $agreement): ?>

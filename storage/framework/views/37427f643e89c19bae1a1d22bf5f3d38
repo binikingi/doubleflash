@@ -1,0 +1,17 @@
+<?php $__env->startSection('content'); ?>
+	<div id="content" class="admin">
+				<form id="login-form" class="admin-form" method="post" action="/changePassword">
+					<?php echo e(csrf_field()); ?>
+
+					<input type="password" class="textbox" placeholder="סיסמה ישנה" name="oldPassword" id="password" required>
+					<input type="password" class="textbox" placeholder="סיסמה חדשה" name="newPassword" id="newPassword" required>
+					<input type="submit" class="button" value="שלח">
+				</form>
+				<div>
+					<?php if(isset($err)): ?>
+						<?php echo e($err); ?>
+
+					<?php endif; ?>
+				</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -13,6 +13,9 @@
 					<ul id="galley-dotted" class="list-unstyled list-inline"></ul>
 					<div id="galley-text">
 						<span class="header gallery-header"><?php echo e($service->title); ?></span>
+						<?php if(check()): ?>
+							<a href="/editInfo/services" class="edit">עריכת פרטי דף</a>
+						<?php endif; ?>
 						<div class="gallery-text">
 							<?php echo $service->desc; ?>
 

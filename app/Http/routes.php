@@ -36,7 +36,7 @@ Route::get('/welcome', function () {
 
 Route::get('login', function(){
 	if(isset($_SESSION['Admin']))
-		if($_SESSION['Admin'] == $_SERVER['REMOTE_ADDR'].'passwordHash'.$_ENV['ADMIN_PASSWORD'])
+		if($_SESSION['Admin'] == $_SERVER['REMOTE_ADDR'].'passwordHash'.password())
 			return redirect('/');
 	return view('auth.login');
 });
@@ -48,6 +48,13 @@ Route::get('logout', ['middleware'=>'Admin', function(){
 	return redirect('/');
 }]);
 
+Route::get('changePassword', ['middleware' => 'Admin', function(){
+	return view('auth.changePassword');
+}]);
+
+Route::post('changePassword', 'pagesController@changePassword');
+
 Route::get('deletepic', 'serviceController@deletepic');
 
-Route::get('allpic', function(){return App\servicePic::all();});
+Route::get('editInfo/{name}', 'infoController@editSelected');
+Route::post('editInfo', 'infoController@updateSelected');

@@ -20,7 +20,13 @@
 		<link rel="stylesheet" href="<?php echo e(asset('css/pad.css')); ?>" media="screen and (max-width: 830px)">
 		<link rel="stylesheet" href="<?php echo e(asset('css/mobile.css')); ?>" media="screen and (max-width: 600px)">
 
-		<title>DoubleFlash</title>
+		<?php if(isset($info)): ?>
+			<meta name="description" content="<?php echo e($info->description); ?>">
+		<?php else: ?>
+			<meta name="description" content="DoubleFlash - הפקות אירועים ומגנטים">
+		<?php endif; ?>
+
+		<title>DoubleFlash <?php if(isset($info)): ?> <?php echo '- ' . $info->title; ?> <?php endif; ?></title>
 		<script>
 			$.ajaxSetup({
 			   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
@@ -54,7 +60,9 @@
 						<a href="/agreement" class="nav-link-a">הסכם שירות</a>
 					<?php if(check()): ?>
 						<li class="nav-link">
-							<a href="logout" class="nav-link-a">התנתק</a>
+							<a href="/logout" class="nav-link-a">התנתק</a>
+						<li class="nav-link">
+							<a href="/changePassword" class="nav-link-a">שינוי סיסמה</a>
 					<?php endif; ?>
 				</ul>
 				<span class="nav-link left important">

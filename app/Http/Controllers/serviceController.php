@@ -11,11 +11,14 @@ use App\service;
 use Input;
 use App\servicePic;
 use App\eventServices;
+use App\info;
 
 class serviceController extends Controller
 {
+    private $info;
     public function __construct(){
        $this->middleware('Admin', ['except' => ['index', 'show']]);
+       $this->info = info::where('name', 'services')->get()[0];
     }
     /**
      * Display a listing of the resource.
@@ -77,7 +80,8 @@ class serviceController extends Controller
         if(empty($service))
             return redirect('/');
         $servicePics = servicePic::where('service_id', '=', $id)->get();
-        return view('service.show', compact('service', 'servicePics', 'wrapClass'));
+        $info = $this->info;
+        return view('service.show', compact('service', 'servicePics', 'wrapClass', 'info'));
     }
 
     /**
@@ -88,7 +92,6 @@ class serviceController extends Controller
      */
     public function edit($id)
     {
-        $wrapClass = '';
         $service = service::find($id);
         if(empty($service))
             return redirect('/');
@@ -113,7 +116,12 @@ class serviceController extends Controller
             $important = 'false';
         $service->important = $important;
         $service->save();
-        return redirect('/');
+        foreach($request->file() as $pic){
+            $name = rand(1000,9999);
+            $pic->move('images/services/', $name.'.png');
+            servicePic::create(['service_id' => $id, 'pic'=>'images/services/'.$name.'.png']);
+        }
+        return redirect('/services/'.$service->id.'/edit');
     }
 
     /**
@@ -137,11 +145,9 @@ class serviceController extends Controller
     }
 
     public function deletepic(){
-        //$service = service::find($_GET['id']);
-        //if($service->pic == '/'.$_GET['path']){
-          //  return servicePic::all()->limit(1);
-        //}
-        if(isset($_GET['id'])) return servicePic::where('pic',  $_GET['path'])->get();
-        return servicePic::all();
+        $pic = servicePic::find($_GET['picId']);
+        unlink($pic->pic);
+        $pic->delete();
+        echo 'ok';
     }
 }

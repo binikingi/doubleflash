@@ -21,11 +21,15 @@ function inter(){
 	$('.event-bg').css('border-right', width+'px solid transparent');
 }
 
-function deletePic(path, id){
-	$.get( "http://doubleflash.co.il/deletepic/?path="+path+"&id="+id)
-	.done(function(data){
-		alert("this is what we got:   "+data);
-	});   
-	console.log( "http://doubleflash.co.il/deletepic/?path="+path+"&id="+id);  
+function deletePic(picId){
+	console.log("http://localhost:8888/deletepic/?picId="+picId);
+	var conf = confirm("האם אתה בטוח שברצונך למחוק תמונה זו?");
+	if(conf == true){
+		$.get( "http://localhost:8888/deletepic/?picId="+picId)
+		.done(function(data){
+			if(data == "ok")
+				location.reload();
+		}); 
+	}
 	//Send Ajax Get request to remove the picture and check if the admin is login!! 
 }
